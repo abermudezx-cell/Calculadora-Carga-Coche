@@ -3,7 +3,9 @@ name: Construir APK Android
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
 
 permissions:
   contents: read
@@ -22,8 +24,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-  
-            - name: Instalar componentes Android
+      - name: Instalar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar componentes Android
         shell: bash
         run: |
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
